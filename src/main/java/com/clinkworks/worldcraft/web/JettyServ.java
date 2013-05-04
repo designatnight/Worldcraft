@@ -36,7 +36,7 @@ public class JettyServ {
         });
         
         Server server = new Server(8080);
-
+        
         ServletContextHandler handler = new ServletContextHandler();
         handler.setContextPath("/");
 

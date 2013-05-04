@@ -50,9 +50,14 @@ public class QuestbookService {
     
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Quest> getQuests() {
-        return questbook.getQuests();
+    public Response getQuests() {
+        return build200ServiceResponse(questbook.getQuests());
     }
+    
+    private Response build200ServiceResponse(Object payload){
+    	return Response.status(200).entity(payload).build();
+    }
+    
     /**
      * 
      * @param quest to delete
@@ -98,7 +103,7 @@ public class QuestbookService {
     	Quest serverSideQuest = questbook.getQuestByQuestID(quest.getQuestID());
     	
     	serverSideQuest.shallowCopyQuest(quest);
-    	
+
     	return Response.status(200).entity(serverSideQuest).build();
     }
 }
